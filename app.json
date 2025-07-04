@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "RSK",
-    "slug": "RSK",
+    "name": "Craftiv",
+    "slug": "Craftiv",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "rsk",
+    "scheme": "craftiv",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

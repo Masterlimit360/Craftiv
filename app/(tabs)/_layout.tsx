@@ -1,86 +1,65 @@
-import { FontAwesome5, Ionicons, MaterialIcons } from '@expo/vector-icons'
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { View } from 'react-native'
-import AddScreen from './add'
-import GroceriesScreen from './groceries'
-import HomeScreen from './home'
-import MealPlanScreen from './mealplan'
-import MyRecipesScreen from './myrecipes'
+import Colors from '@/constants/Colors';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
+import { StyleSheet } from 'react-native';
 
-const Tab = createBottomTabNavigator()
-
-export default function _layout() {
+export default function TabLayout() {
   return (
-    <Tab.Navigator
+    <Tabs
       screenOptions={{
+        tabBarActiveTintColor: Colors.light.tint,
+        tabBarInactiveTintColor: Colors.light.tabIconDefault,
         headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          backgroundColor: '#E6F2E2',
-          height: 70,
-          borderTopWidth: 0,
-        },
-      }}
-    >
-      <Tab.Screen
-        name="Home"
-        component={HomeScreen}
+        tabBarStyle: styles.tabBar,
+        tabBarLabelStyle: styles.tabBarLabel,
+      }}>
+      <Tabs.Screen
+        name="home"
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <Ionicons name="home-outline" size={28} color={focused ? "#217A2C" : "#7CB47C"} />
-          ),
+          title: 'Home',
+          tabBarIcon: ({ color }) => <MaterialIcons name="home" size={24} color={color} />,
         }}
       />
-      <Tab.Screen
-        name="MyRecipes"
-        component={MyRecipesScreen}
+      <Tabs.Screen
+        name="explore"
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <MaterialIcons name="menu-book" size={28} color={focused ? "#217A2C" : "#7CB47C"} />
-          ),
+          title: 'Explore',
+          tabBarIcon: ({ color }) => <MaterialIcons name="search" size={24} color={color} />,
         }}
       />
-      <Tab.Screen
-        name="Add"
-        component={AddScreen}
+      <Tabs.Screen
+        name="projects"
         options={{
-          tabBarIcon: () => (
-            <View
-              style={{
-                width: 60,
-                height: 60,
-                borderRadius: 30,
-                backgroundColor: '#217A2C',
-                justifyContent: 'center',
-                alignItems: 'center',
-                marginBottom: 30,
-                borderWidth: 4,
-                borderColor: '#E6F2E2',
-              }}
-            >
-              <Ionicons name="add" size={36} color="#fff" />
-            </View>
-          ),
+          title: 'Projects',
+          tabBarIcon: ({ color }) => <MaterialIcons name="folder" size={24} color={color} />,
         }}
       />
-      <Tab.Screen
-        name="MealPlan"
-        component={MealPlanScreen}
+      <Tabs.Screen
+        name="settings"
         options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <FontAwesome5 name="calendar-alt" size={26} color={focused ? "#217A2C" : "#7CB47C"} />
-          ),
+          title: 'Settings',
+          tabBarIcon: ({ color }) => <MaterialIcons name="settings" size={24} color={color} />,
         }}
       />
-      <Tab.Screen
-        name="Groceries"
-        component={GroceriesScreen}
-        options={{
-          tabBarIcon: ({ focused }: { focused: boolean }) => (
-            <Ionicons name="cart-outline" size={28} color={focused ? "#217A2C" : "#7CB47C"} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  )
+    </Tabs>
+  );
 }
+
+const styles = StyleSheet.create({
+  tabBar: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    elevation: 0,
+    borderTopWidth: 0,
+    backgroundColor: '#fff',
+    height: 70, // Reduced height
+    paddingBottom: 0, // Remove extra padding
+  },
+  tabBarLabel: {
+    fontSize: 12,
+    fontWeight: '500',
+    marginBottom: 0, // Remove extra margin
+  },
+});
